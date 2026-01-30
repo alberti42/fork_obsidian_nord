@@ -1,4 +1,3 @@
-
 :root
 {
     --dark0_x:  46,52,64; /* #2e3440 */
@@ -27,7 +26,7 @@
     --frost2:   rgb(var(--frost2_x));
     --frost3_x: 94,129,172; /* #5e81ac */
     --frost3:   rgb(var(--frost3_x));
-
+    
     --red_x:    191,97,106; /* #bf616a */
     --red:      rgb(var(--red_x));
     --orange_x: 208,135,112; /* #d08770 */
@@ -69,6 +68,11 @@ body
 
 .theme-dark
 {
+    /* Frosty accent (dark theme only). */
+    --accent-h: 216;
+    --accent-s: 53%;
+    --accent-l: 47%;
+
     --color-red-rgb:                 var(--red_x);
     --color-red:                     var(--red);
     --color-purple-rgb:              var(--purple_x);
@@ -91,16 +95,16 @@ body
     --background-secondary-alt:      var(--dark2);
     --background-modifier-border:    var(--dark2);
 
-    --cursor-line-background:        rgba(var(--red_x), 0.2);
+    --cursor-line-background:        rgba(var(--frost2_x), 0.18);
 
     --text-normal:                   var(--light2);
     --text-faint:                    var(--light0);
     --text-muted:                    var(--light1);
 
-    --link-url:                      var(--purple);
+    --link-url:                      var(--yellow);
 
-    --h1-color:                      var(--red);
-    --h2-color:                      var(--yellow);
+    --h1-color:                      var(--frost2);
+    --h2-color:                      var(--frost1);
     --h3-color:                      var(--green);
     --h4-color:                      var(--purple);
     --h5-color:                      var(--frost0);
@@ -109,16 +113,17 @@ body
     --text-highlight-bg:             var(--frost1);
     --text-highlight-fg:             var(--dark0);
 
-    --text-accent:                   var(--orange);
-    --text-accent-hover:             var(--frost2);
+    --text-accent:                   var(--yellow);
+    --text-accent-hover:             var(--yellow);
 
     --tag-color:                     var(--frost0);
     --tag-background:                var(--dark2);
     --tag-background-hover:          var(--dark1);
 
-    --titlebar-text-color-focused:   var(--red);
+    --titlebar-text-color-focused:   var(--frost1);
 
-    --inline-title-color:            var(--yellow);
+    --inline-title-fg-color:         var(--frost1);
+    --inline-title-bg-color:         var(--dark3);
 
     --bold-color:                    var(--yellow);
     --italic-color:                  var(--yellow);
@@ -135,8 +140,8 @@ body
     --table-row-odd-background:      hsl(220, 16%, 24%);
     --table-row-background-hover:    var(--dark3);
 
-    --text-selection:                rgba(var(--red_x), 0.6);
-    --flashing-background:           rgba(var(--red_x), 0.3);
+    --text-selection:                rgba(var(--frost1_x), 0.55);
+    --flashing-background:           rgba(var(--frost1_x), 0.28);
 
     --code-normal:                   var(--frost1);
     --code-background:               var(--dark1);
@@ -146,19 +151,19 @@ body
     --mermaid-exclude:               var(--dark3);
     --mermaid-seqnum:                var(--dark0);
 
-    --icon-color-hover:              var(--red);
+    --icon-color-hover:              var(--frost1);
     --icon-color-focused:            var(--frost2);
 
-    --nav-item-color-hover:          var(--red);
+    --nav-item-color-hover:          var(--frost0);
     --nav-item-color-active:         var(--frost2);
     --nav-file-tag:                  rgba(var(--yellow_x), 0.9);
 
     --graph-line:                    var(--dark3);
     --graph-node:                    var(--light3);
-    --graph-node-tag:                var(--red);
+    --graph-node-tag:                var(--frost0);
     --graph-node-attachment:         var(--green);
 
-    --calendar-hover:                var(--red);
+    --calendar-hover:                var(--frost1);
     --calendar-background-hover:     var(--dark3);
     --calendar-week:                 var(--yellow);
     --calendar-today:                var(--yellow);
@@ -166,10 +171,10 @@ body
     --dataview-key:                  var(--text-faint);
     --dataview-key-background:       rgba(var(--frost2_x), 0.3);
     --dataview-value:                var(--text-faint);
-    --dataview-value-background:     rgba(var(--red_x), 0.3);
+    --dataview-value-background:     rgba(var(--frost1_x), 0.22);
 
     --tab-text-color-focused-active:         var(--frost2);
-    --tab-text-color-focused-active-current: var(--red);
+    --tab-text-color-focused-active-current: var(--frost1);
 }
 
 .theme-light
@@ -329,6 +334,11 @@ td
     font-weight: 600;
 }
 
+.theme-dark .markdown-rendered mark a
+{
+    color: var(--frost3) !important;
+}
+
 .search-result-file-matched-text
 {
     color: var(--text-highlight-fg) !important;
@@ -448,6 +458,12 @@ pre[class*="language-"]
     fill: var(--red) !important;
 }
 
+.theme-dark .mermaid .loopText>tspan,
+.theme-dark .mermaid .entityLabel
+{
+    fill: var(--frost2) !important;
+}
+
 .mermaid .exclude-range
 {
     fill: var(--mermaid-exclude) !important;
@@ -475,9 +491,12 @@ pre[class*="language-"]
     background-color: var(--calendar-background-hover) !important;
 }
 
-.markdown-embed-title
+.inline-title
 {
-    color: var(--yellow);
+    color: var(--inline-title-fg-color);
+    background-color: var(--inline-title-bg-color);
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-s);
     font-weight: 600 !important;
 }
 
@@ -523,3 +542,9 @@ pre[class*="language-"]
     color: var(--red);
 }
 
+.theme-dark .suggestion-highlight
+{
+    color: var(--text-highlight-fg);
+}
+
+/* # vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 :*/
