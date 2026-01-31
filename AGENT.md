@@ -139,3 +139,77 @@ When the user requests a change:
 - Many elements use `!important` to override Obsidian defaults
 - Custom variables (prefixed with comments) are theme-specific extensions
 - Plugin sections (Mermaid, Calendar, Dataview) use custom variables applied via CSS rules
+
+---
+
+## Design Decisions & Analysis
+
+This section documents issues we identified during theme analysis and the decisions made. These are not hard rules - future changes may revisit these decisions.
+
+### 1. Custom Theme-Specific Variables
+
+**Analysis:** The theme defines several variables that are not part of Obsidian's official CSS API. These are internal helpers used within the theme's CSS rules.
+
+| Variable | Purpose | Used By |
+|----------|---------|---------|
+| `--cursor-line-background` | Active line highlight in editor | `.cm-active` rule |
+| `--flashing-background` | Search result flash animation | `.is-flashing` rule |
+| `--text-highlight-fg` | Foreground color for highlighted text | `.markdown-rendered mark`, `.cm-highlight` |
+| `--mermaid-note`, `--mermaid-loopline`, etc. | Mermaid diagram styling | `.mermaid` rules |
+| `--calendar-*` | Calendar plugin styling | `.calendar` rules |
+| `--dataview-*` | Dataview plugin styling | `.dataview` rules |
+| `--nav-file-tag` | File count badges in navigator | `.nav-file-tag` rule |
+| `--table-row-even-background`, `--table-row-odd-background` | Alternating table rows | `tbody tr:nth-child` rules |
+| `--nord-table-*` | Intermediate Nord colors for tables | Table variables |
+
+**Decision:** Keep these variables. They work correctly because they're applied via explicit CSS rules. They provide meaningful names and make the theme easier to customize. The `--text-highlight-fg` is particularly useful as Obsidian only provides `--text-highlight-bg` officially.
+
+### 2. Use of `!important` Declarations
+
+**Analysis:** The theme uses `!important` on many CSS rules to override Obsidian's default styles. Examples:
+- Table styling (`background-color: var(--table-row-even-background) !important`)
+- Mark/highlight styling
+- Search result text color
+- Bold text in editor
+
+**Decision:** Keep all `!important` declarations. Removing them is risky - Obsidian's default styles may have higher specificity, causing the theme to break. The current approach is safer and works reliably.
+
+### 3. Hardcoded Values (Resolved)
+
+**Analysis:** The original theme had hardcoded HSL values for table colors:
+- `hsl(220, 16%, 16%)` for table headers
+- `hsl(220, 16%, 20%)` for even rows
+- `hsl(220, 16%, 24%)` for odd rows
+
+These used Nord's blue-tinted gray hue but weren't part of the variable system.
+
+**Decision:** Replaced with Nord-based variables (`--nord-table-header`, `--nord-table-row-even`, `--nord-table-row-odd`) defined in `:root`. This maintains visual consistency while integrating with the variable system. Each has an `_x` RGB variant for potential `rgba()` usage.
+
+### 4. Non-Standard Variable Names (Resolved)
+
+**Analysis:** Some variables didn't match Obsidian's official API:
+- `--inline-title-fg-color` (should be `--inline-title-color`)
+- `--link-url` (not an official variable)
+
+**Decision:** Fixed these to use official names where they exist. The `.cm-url` rule now uses `--yellow` directly instead of a non-existent variable.
+
+### 5. Missing Official Variables (Resolved)
+
+**Analysis:** The original theme was missing many official Obsidian CSS variables, which could cause inconsistent behavior or fall back to Obsidian defaults.
+
+**Decision:** Added comprehensive coverage of official variables:
+- Base colors (`--color-base-00` to `--color-base-100`)
+- Code syntax highlighting (11 token types)
+- Blockquote styling
+- Callout type colors (14 types)
+- Link colors (internal, external, unresolved)
+- List markers
+- Interactive elements
+- Surface modifiers
+- And more (see Theme Sections above)
+
+### 6. Plugin-Specific Styling
+
+**Analysis:** The theme includes styling for third-party plugins (Mermaid, Calendar, Dataview). These use custom variables that only work because they're applied via CSS rules targeting plugin-specific classes.
+
+**Decision:** Keep these sections. They're isolated and don't affect core functionality. If a plugin isn't installed, the rules simply don't apply. This provides a better experience for users of these popular plugins.
