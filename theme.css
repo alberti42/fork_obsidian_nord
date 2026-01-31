@@ -37,6 +37,16 @@
     --green:    rgb(var(--green_x));
     --purple_x: 180,142,173; /* #b48ead */
     --purple:   rgb(var(--purple_x));
+
+    /* Nord-based intermediate dark shades for tables and surfaces.
+     * These fill gaps between the main Nord Polar Night colors.
+     * Calculated using Nord's blue-tinted gray hue (220) with varying lightness. */
+    --nord-table-header_x:  37,42,51;   /* #252a33 - darker than dark0 */
+    --nord-table-header:    rgb(var(--nord-table-header_x));
+    --nord-table-row-even_x: 46,52,64;  /* #2e3440 - same as dark0 */
+    --nord-table-row-even:  rgb(var(--nord-table-row-even_x));
+    --nord-table-row-odd_x: 53,60,74;   /* #353c4a - between dark0 and dark1 */
+    --nord-table-row-odd:   rgb(var(--nord-table-row-odd_x));
 }
 
 body
@@ -279,15 +289,15 @@ body
     --table-background:              transparent;
     --table-border-color:            var(--dark2);
     --table-border-width:            1px;
-    --table-header-background:       hsl(220, 16%, 16%);
+    --table-header-background:       var(--nord-table-header);
     --table-header-background-hover: var(--dark3);
     --table-header-color:            var(--light2);
     --table-header-weight:           600;
     --table-text-color:              var(--light1);
-    --table-row-alt-background:      hsl(220, 16%, 20%);
+    --table-row-alt-background:      var(--nord-table-row-even);
     /* Custom: alternating row colors (used in CSS rules below) */
-    --table-row-even-background:     hsl(220, 16%, 20%);
-    --table-row-odd-background:      hsl(220, 16%, 24%);
+    --table-row-even-background:     var(--nord-table-row-even);
+    --table-row-odd-background:      var(--nord-table-row-odd);
     --table-row-background-hover:    var(--dark3);
 
     /* ========================================
