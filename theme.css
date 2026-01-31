@@ -68,41 +68,119 @@ body
 
 .theme-dark
 {
-    /* Frosty accent (dark theme only). */
+    /* ========================================
+     * ACCENT COLOR
+     * Frosty accent (dark theme only).
+     * ======================================== */
     --accent-h: 216;
     --accent-s: 53%;
     --accent-l: 47%;
 
+    /* ========================================
+     * BASE COLORS
+     * Maps Obsidian's base color scale to Nord palette.
+     * These form the foundation for many UI elements.
+     * ======================================== */
+    --color-base-00:                 var(--dark0);  /* Darkest - main background */
+    --color-base-05:                 #2e3440;       /* Slightly lighter than dark0 */
+    --color-base-10:                 #313744;       /* Between dark0 and dark1 */
+    --color-base-20:                 var(--dark1);  /* Secondary surfaces */
+    --color-base-25:                 #3e4555;       /* Between dark1 and dark2 */
+    --color-base-30:                 var(--dark2);  /* Borders, dividers */
+    --color-base-35:                 #505a6e;       /* Between dark2 and dark3 */
+    --color-base-40:                 var(--dark3);  /* Muted elements */
+    --color-base-50:                 #616e88;       /* Mid-tone */
+    --color-base-60:                 var(--light0); /* Faint text */
+    --color-base-70:                 var(--light1); /* Muted text */
+    --color-base-100:                var(--light2); /* Normal text */
+
+    /* ========================================
+     * EXTENDED COLORS
+     * Semantic colors for status, callouts, syntax, etc.
+     * ======================================== */
     --color-red-rgb:                 var(--red_x);
     --color-red:                     var(--red);
-    --color-purple-rgb:              var(--purple_x);
-    --color-purple:                  var(--purple);
+    --color-orange-rgb:              var(--orange_x);
+    --color-orange:                  var(--orange);
+    --color-yellow-rgb:              var(--yellow_x);
+    --color-yellow:                  var(--yellow);
     --color-green-rgb:               var(--green_x);
     --color-green:                   var(--green);
     --color-cyan-rgb:                var(--frost1_x);
     --color-cyan:                    var(--frost1);
     --color-blue-rgb:                var(--frost3_x);
     --color-blue:                    var(--frost3);
-    --color-yellow-rgb:              var(--yellow_x);
-    --color-yellow:                  var(--yellow);
-    --color-orange-rgb:              var(--orange_x);
-    --color-orange:                  var(--orange);
-    /* --color-pink:                    var(--purple); */
+    --color-purple-rgb:              var(--purple_x);
+    --color-purple:                  var(--purple);
+    --color-pink-rgb:                var(--purple_x);  /* Nord has no pink, use purple */
+    --color-pink:                    var(--purple);
 
+    /* ========================================
+     * SURFACE COLORS
+     * Background colors for different UI layers.
+     * ======================================== */
     --background-primary:            var(--dark0);
     --background-primary-alt:        var(--dark0);
     --background-secondary:          var(--dark1);
     --background-secondary-alt:      var(--dark2);
+    --background-modifier-hover:     rgba(var(--frost2_x), 0.12);
+    --background-modifier-active-hover: rgba(var(--frost2_x), 0.18);
     --background-modifier-border:    var(--dark2);
+    --background-modifier-border-hover: var(--dark3);
+    --background-modifier-border-focus: var(--frost2);
+    --background-modifier-error-rgb: var(--red_x);
+    --background-modifier-error:     rgba(var(--red_x), 0.2);
+    --background-modifier-error-hover: rgba(var(--red_x), 0.3);
+    --background-modifier-success-rgb: var(--green_x);
+    --background-modifier-success:   rgba(var(--green_x), 0.2);
+    --background-modifier-message:   var(--dark1);
+    --background-modifier-form-field: var(--dark1);
 
-    --cursor-line-background:        rgba(var(--frost2_x), 0.18);
+    /* ========================================
+     * INTERACTIVE COLORS
+     * Buttons, toggles, and other interactive elements.
+     * ======================================== */
+    --interactive-normal:            var(--dark2);
+    --interactive-hover:             var(--dark3);
+    --interactive-accent:            var(--frost3);
+    --interactive-accent-hsl:        hsl(213, 32%, 52%);
+    --interactive-accent-hover:      var(--frost2);
 
+    /* ========================================
+     * TEXT COLORS
+     * ======================================== */
     --text-normal:                   var(--light2);
-    --text-faint:                    var(--light0);
     --text-muted:                    var(--light1);
+    --text-faint:                    var(--light0);
+    --text-on-accent:                var(--dark0);
+    --text-on-accent-inverted:       var(--light2);
+    --text-success:                  var(--green);
+    --text-warning:                  var(--yellow);
+    --text-error:                    var(--red);
+    --text-accent:                   var(--yellow);
+    --text-accent-hover:             var(--yellow);
+    --text-highlight-bg:             var(--frost1);
+    --text-selection:                rgba(var(--frost1_x), 0.55);
 
-    --link-url:                      var(--yellow);
+    /* Caret (text cursor) */
+    --caret-color:                   var(--frost1);
 
+    /* ========================================
+     * LINK COLORS
+     * Internal, external, and unresolved links.
+     * ======================================== */
+    --link-color:                    var(--frost1);
+    --link-color-hover:              var(--frost0);
+    --link-unresolved-color:         var(--purple);
+    --link-unresolved-opacity:       0.8;
+    --link-unresolved-decoration-style: dashed;
+    --link-unresolved-decoration-color: var(--purple);
+    --link-external-color:           var(--frost2);
+    --link-external-color-hover:     var(--frost1);
+
+    /* ========================================
+     * HEADINGS
+     * ======================================== */
     --h1-color:                      var(--frost2);
     --h2-color:                      var(--frost1);
     --h3-color:                      var(--green);
@@ -110,71 +188,207 @@ body
     --h5-color:                      var(--frost0);
     --h6-color:                      var(--frost2);
 
-    --text-highlight-bg:             var(--frost1);
-    --text-highlight-fg:             var(--dark0);
-
-    --text-accent:                   var(--yellow);
-    --text-accent-hover:             var(--yellow);
-
-    --tag-color:                     var(--frost0);
-    --tag-background:                var(--dark2);
-    --tag-background-hover:          var(--dark1);
-
-    --titlebar-text-color-focused:   var(--frost1);
-
-    --inline-title-fg-color:         var(--frost1);
-    --inline-title-bg-color:         var(--dark3);
-
+    /* ========================================
+     * TEXT FORMATTING
+     * Bold, italic, and other inline styles.
+     * ======================================== */
     --bold-color:                    var(--yellow);
     --italic-color:                  var(--yellow);
 
-    --checkbox-color:                var(--frost0);
-    --checkbox-color-hover:          var(--frost0);
-    --checkbox-border-color:         var(--frost0);
-    --checkbox-border-color-hover:   var(--frost0);
-    --checklist-done-color:          rgba(var(--light2_x), 0.5);
+    /* ========================================
+     * INLINE TITLE
+     * The note title displayed at the top of the editor.
+     * ======================================== */
+    --inline-title-color:            var(--frost1);
 
+    /* ========================================
+     * BLOCKQUOTES
+     * ======================================== */
+    --blockquote-border-thickness:   4px;
+    --blockquote-border-color:       var(--frost3);
+    --blockquote-background-color:   rgba(var(--frost3_x), 0.08);
+    --blockquote-color:              var(--light1);
+    --blockquote-font-style:         normal;
+
+    /* ========================================
+     * CALLOUTS
+     * Styled admonition blocks.
+     * ======================================== */
+    --callout-default:               var(--frost2_x);
+    --callout-info:                  var(--frost1_x);
+    --callout-todo:                  var(--frost2_x);
+    --callout-tip:                   var(--frost0_x);
+    --callout-success:               var(--green_x);
+    --callout-question:              var(--yellow_x);
+    --callout-warning:               var(--orange_x);
+    --callout-fail:                  var(--red_x);
+    --callout-error:                 var(--red_x);
+    --callout-bug:                   var(--red_x);
+    --callout-example:               var(--purple_x);
+    --callout-quote:                 var(--light0_x);
+    --callout-summary:               var(--frost0_x);
+    --callout-important:             var(--purple_x);
+
+    /* ========================================
+     * CODE & SYNTAX HIGHLIGHTING
+     * ======================================== */
+    --code-background:               var(--dark1);
+    --code-normal:                   var(--frost1);
+    --code-comment:                  var(--light0);       /* Comments - muted */
+    --code-function:                 var(--frost1);       /* Functions - cyan */
+    --code-keyword:                  var(--frost2);       /* Keywords - blue */
+    --code-string:                   var(--green);        /* Strings - green */
+    --code-operator:                 var(--frost1);       /* Operators - cyan */
+    --code-property:                 var(--frost0);       /* Properties - teal */
+    --code-punctuation:              var(--light1);       /* Punctuation - light */
+    --code-tag:                      var(--frost2);       /* Tags/constants - blue */
+    --code-value:                    var(--purple);       /* Values/numbers - purple */
+    --code-important:                var(--orange);       /* Important/regex - orange */
+
+    /* ========================================
+     * LISTS
+     * Bullet points and numbered lists.
+     * ======================================== */
+    --list-marker-color:             var(--frost2);
+    --list-marker-color-hover:       var(--frost1);
+    --list-marker-color-collapsed:   var(--orange);
+    --list-bullet-size:              5px;
+    --list-bullet-radius:            50%;
+
+    /* ========================================
+     * CHECKBOXES & TASKS
+     * ======================================== */
+    --checkbox-color:                var(--frost0);
+    --checkbox-color-hover:          var(--frost1);
+    --checkbox-marker-color:         var(--dark0);
+    --checkbox-border-color:         var(--frost0);
+    --checkbox-border-color-hover:   var(--frost1);
+    --checklist-done-color:          rgba(var(--light2_x), 0.5);
+    --checklist-done-decoration:     line-through;
+
+    /* ========================================
+     * TAGS
+     * ======================================== */
+    --tag-color:                     var(--frost0);
+    --tag-background:                var(--dark2);
+    --tag-background-hover:          var(--dark3);
+
+    /* ========================================
+     * TABLES
+     * ======================================== */
+    --table-background:              transparent;
+    --table-border-color:            var(--dark2);
+    --table-border-width:            1px;
     --table-header-background:       hsl(220, 16%, 16%);
     --table-header-background-hover: var(--dark3);
+    --table-header-color:            var(--light2);
+    --table-header-weight:           600;
+    --table-text-color:              var(--light1);
+    --table-row-alt-background:      hsl(220, 16%, 20%);
+    /* Custom: alternating row colors (used in CSS rules below) */
     --table-row-even-background:     hsl(220, 16%, 20%);
     --table-row-odd-background:      hsl(220, 16%, 24%);
     --table-row-background-hover:    var(--dark3);
 
-    --text-selection:                rgba(var(--frost1_x), 0.55);
+    /* ========================================
+     * TABS
+     * ======================================== */
+    --tab-text-color-focused-active:         var(--frost2);
+    --tab-text-color-focused-active-current: var(--frost1);
+
+    /* ========================================
+     * NAVIGATION / FILE EXPLORER
+     * ======================================== */
+    --nav-item-color-hover:          var(--frost0);
+    --nav-item-color-active:         var(--frost2);
+    --nav-item-background-hover:     rgba(var(--frost2_x), 0.1);
+    --nav-item-background-active:    rgba(var(--frost2_x), 0.15);
+    --nav-collapse-icon-color:       var(--light0);
+    --nav-collapse-icon-color-collapsed: var(--frost2);
+    --nav-indentation-guide-color:   var(--dark3);
+
+    /* ========================================
+     * ICONS
+     * ======================================== */
+    --icon-color:                    var(--light0);
+    --icon-color-hover:              var(--frost1);
+    --icon-color-active:             var(--frost2);
+    --icon-color-focused:            var(--frost2);
+
+    /* ========================================
+     * GRAPH VIEW
+     * ======================================== */
+    --graph-line:                    var(--dark3);
+    --graph-node:                    var(--light3);
+    --graph-node-tag:                var(--frost0);
+    --graph-node-attachment:         var(--green);
+    --graph-node-unresolved:         var(--purple);
+    --graph-node-focused:            var(--frost1);
+
+    /* ========================================
+     * INDENTATION GUIDES
+     * ======================================== */
+    --indentation-guide-color:       var(--dark3);
+    --indentation-guide-color-active: var(--frost3);
+
+    /* ========================================
+     * SCROLLBAR
+     * ======================================== */
+    --scrollbar-bg:                  var(--dark0);
+    --scrollbar-thumb-bg:            var(--dark3);
+    --scrollbar-active-thumb-bg:     var(--frost3);
+
+    /* ========================================
+     * MODALS & DIALOGS
+     * ======================================== */
+    --modal-background:              var(--dark1);
+    --modal-border-color:            var(--dark3);
+
+    /* ========================================
+     * TITLEBAR
+     * ======================================== */
+    --titlebar-text-color-focused:   var(--frost1);
+
+    /* ========================================
+     * CURSOR LINE (Editor)
+     * Custom variable for active line highlighting.
+     * ======================================== */
+    --cursor-line-background:        rgba(var(--frost2_x), 0.18);
+
+    /* ========================================
+     * FLASHING / ANIMATION
+     * Used for search result highlighting, etc.
+     * ======================================== */
     --flashing-background:           rgba(var(--frost1_x), 0.28);
 
-    --code-normal:                   var(--frost1);
-    --code-background:               var(--dark1);
-
+    /* ========================================
+     * PLUGIN: Mermaid Diagrams
+     * ======================================== */
     --mermaid-note:                  var(--frost3);
     --mermaid-loopline:              var(--frost1);
     --mermaid-exclude:               var(--dark3);
     --mermaid-seqnum:                var(--dark0);
 
-    --icon-color-hover:              var(--frost1);
-    --icon-color-focused:            var(--frost2);
-
-    --nav-item-color-hover:          var(--frost0);
-    --nav-item-color-active:         var(--frost2);
-    --nav-file-tag:                  rgba(var(--yellow_x), 0.9);
-
-    --graph-line:                    var(--dark3);
-    --graph-node:                    var(--light3);
-    --graph-node-tag:                var(--frost0);
-    --graph-node-attachment:         var(--green);
-
+    /* ========================================
+     * PLUGIN: Calendar
+     * ======================================== */
     --calendar-hover:                var(--frost1);
     --calendar-background-hover:     var(--dark3);
     --calendar-week:                 var(--yellow);
     --calendar-today:                var(--yellow);
 
+    /* ========================================
+     * PLUGIN: Dataview
+     * ======================================== */
     --dataview-key:                  var(--text-faint);
     --dataview-key-background:       rgba(var(--frost2_x), 0.3);
     --dataview-value:                var(--text-faint);
     --dataview-value-background:     rgba(var(--frost1_x), 0.22);
 
-    --tab-text-color-focused-active:         var(--frost2);
-    --tab-text-color-focused-active-current: var(--frost1);
+    /* ========================================
+     * CUSTOM: File tag in nav (e.g., note count)
+     * ======================================== */
+    --nav-file-tag:                  rgba(var(--yellow_x), 0.9);
 }
 
 table
@@ -270,12 +484,12 @@ pre[class*="language-"]
 
 .cm-url
 {
-    color: var(--link-url) !important;
+    color: var(--yellow) !important;
 }
 
 .cm-url:hover
 {
-    color: var(--text-accent-hover) !important;
+    color: var(--frost1) !important;
 }
 
 /* Keep highlight/marks the same between viewer and editor. */
@@ -388,8 +602,8 @@ pre[class*="language-"]
 
 .inline-title
 {
-    color: var(--inline-title-fg-color);
-    background-color: var(--inline-title-bg-color);
+    color: var(--inline-title-color);
+    background-color: var(--dark3);
     padding: 0.2em 0.4em;
     border-radius: var(--radius-s);
     font-weight: 600 !important;
